@@ -1,6 +1,8 @@
 {
   "name": "HealthBot",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "eba96d06"
 }
