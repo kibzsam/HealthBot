@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import firebaseConfig from './firebase'
 import { AngularFireModule } from '@angular/fire';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 
 @NgModule({
@@ -24,7 +25,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth'
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    
   ],
   bootstrap: [AppComponent]
 })

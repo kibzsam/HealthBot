@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title color="tertiary">Health Chatbot</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title color="light">Health Chatbot</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-text color="tertiary">
+  <ion-text color="danger">
     <h6>Sign In:</h6>
   </ion-text>
   <ion-item>
@@ -16,7 +16,7 @@
     <ion-label position="floating">Password</ion-label>
     <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
-  <ion-button expand="full" shape="round" color="tertiary" margin-top="30px" (click)="login()">Login</ion-button>
+  <ion-button expand="full" shape="round" color="danger" margin-top="30px" (click)="login()">Login</ion-button>
   <ion-item [routerLink]="'/register/'" routerDirection="forward">
     <ion-label color="medium">
          Register here...
