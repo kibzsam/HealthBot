@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -10,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import firebaseConfig from './firebase'
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 
@@ -20,14 +23,16 @@ import {AngularFireAuthModule} from '@angular/fire/auth'
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-    
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,29 +1,51 @@
 <ion-header>
-    <ion-toolbar color="danger">
-      <ion-title color="light">Health Chatbot</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-text color="danger">
-      <h6>Register:</h6>
-    </ion-text>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </ion-item>
-    <ion-item margin-bottom>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-    <ion-item margin-bottom>
-        <ion-label position="floating">Confirm Password</ion-label>
-        <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
-      </ion-item>
-    <ion-button expand="full" shape="round" color="danger" margin-top="30px" (click)="Register()">Sign Up</ion-button>
-    <ion-item [routerLink]="'/login/'" routerDirection="forward">
-      <ion-label color="medium" font-size-small margin-bottom>
-          Sign in here...
-        </ion-label>
-    </ion-item>
-  </ion-content>
+  <ion-toolbar color="danger">
+    <ion-title color="light">Health Chatbot</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-text color="dark">
+    <h6>Register:</h6>
+  </ion-text>
+  <ion-item>
+    <ion-label color="danger" position="floating">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="danger" position="floating">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="danger" position="floating">Phone</ion-label>
+    <ion-input type="number" [(ngModel)]="phone" required></ion-input>
+  </ion-item>
+  <ion-item margin-bottom>
+    <ion-label color="danger" position="floating">Role</ion-label>
+    <ion-select value="" [(ngModel)]="role">
+      <ion-select-option value="Patient">Patient</ion-select-option>
+      <ion-select-option value="Doctor">Doctor</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item margin-bottom>
+    <ion-label color="danger" position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-item margin-bottom>
+    <ion-label color="danger" position="floating">Confirm Password</ion-label>
+    <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+  </ion-item>
+  <ion-button
+    expand="full"
+    shape="round"
+    color="danger"
+    margin-top="30px"
+    (click)="Register()"
+    >Sign Up</ion-button
+  >
+  <ion-item [routerLink]="'/login/'" routerDirection="forward">
+    <ion-label color="medium" font-size-small margin-bottom>
+      Sign in here...
+    </ion-label>
+  </ion-item>
+</ion-content>
