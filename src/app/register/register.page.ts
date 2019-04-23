@@ -27,7 +27,7 @@ export class RegisterPage implements OnInit {
     public afAuth: AngularFireAuth,
     public alert:AlertController,
     public afstore:AngularFirestore,
-    afs: AngularFirestore,
+    public db:AngularFireDatabase,
     public route:Router,
     public user:UserService
     ) { }
@@ -43,14 +43,19 @@ export class RegisterPage implements OnInit {
     }
     try{
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(email,password)
-      var user = this.afAuth.auth.currentUser;
-      this.afstore.collection("users").doc(user.uid).set({
+      var user = this.afAuth.auth.currentUser.uid;
+      this.db.database.ref('users/' + user).set({
         username: username,
         phone: phone,
         role:role,
-       });
+      });
+      /*this.afstore.collection("users").doc(user.uid).set({
+        username: username,
+        phone: phone,
+        role:role,
+       });*/
       console.log(res)
-      this.showAlert("Success!","Welcome Aboard")
+      this.showAlert("Success!","Please Login ")
       this.route.navigate(['/login'])
     }
     catch(error){

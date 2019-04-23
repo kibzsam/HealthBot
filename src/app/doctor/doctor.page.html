@@ -1,9 +1,53 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>doctor</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title color="light">Doctor</ion-title>
+    <ion-button (click)="logout()" slot="end" color="primary" fill="clear">
+        <ion-icon name="log-out" color="light"></ion-icon>
+        <ion-label color="light">Logout</ion-label>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="person" slot="start" color="primary"></ion-icon>
+          <ion-title>Profile</ion-title>
+          <ion-button fill="outline" slot="end" (click)="addProfile()">Add Profile</ion-button>
+        </ion-item>
+      
+        <ion-card-content>
+            <ion-card-subtitle>Name</ion-card-subtitle><br>
+            <ion-icon name="mail" slot="start" color="dark"></ion-icon><br>
+            <ion-icon name="call" slot="start" color="dark"></ion-icon><br>
+        </ion-card-content>
+    </ion-card>
+    <ion-card padding>
+        <ion-item>
+          <ion-text color="dark">Set the date and time available this week</ion-text>
+        </ion-item>
+        <ion-card-content padding text-center>
+            <ion-item>
+                <ion-label position="floating" color="primary">Type of Doctor</ion-label>
+                <ion-input></ion-input>
+            </ion-item>
+              <ion-item>
+                <ion-label position="fixed" color="primary">Location</ion-label>
+                <ion-input></ion-input>
+              </ion-item>
+              <ion-text color="dark">Select Date and Time</ion-text>
+              <ion-item>
+                  <ion-label>Date</ion-label>
+                  <ion-datetime display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+                </ion-item>
+            
+                  
+        </ion-card-content>
+      </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

@@ -4,8 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-text color="danger">
+<ion-content padding text-center>
+      <img src="../assets/icon/icon.png" width="80px"height="80px" >
+  <ion-text color="dark">
+    <h4 >Welcome to Health Bot</h4>
+    <h5 >Your Daily Symptoms Checker</h5>
     <h6>Sign In:</h6>
   </ion-text>
   <ion-item>
@@ -19,7 +22,7 @@
   <ion-button expand="full" shape="round" color="danger" margin-top="30px" (click)="login()">Login</ion-button>
   <ion-item [routerLink]="'/register/'" routerDirection="forward">
     <ion-label color="medium">
-         Register here...
+         Sign Up here...
       </ion-label>
   </ion-item>
 

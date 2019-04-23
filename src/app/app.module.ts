@@ -1,3 +1,4 @@
+import { BookPageModule } from './book/book.module';
 import { UserService } from './user.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,18 +15,25 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import {AngularFireAuthModule} from '@angular/fire/auth'
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { DoctorPageModule } from './doctor/doctor.module';
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, 
+  imports: [
+    NgCalendarModule,
+    BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BookPageModule,
+    DoctorPageModule
   ],
   providers: [
     StatusBar,
