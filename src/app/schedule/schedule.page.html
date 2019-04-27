@@ -12,9 +12,13 @@
               </ion-item>
             <ion-card-content >
             <ion-icon name="phone-portrait" color="dark" ></ion-icon><ion-text color="dark">Phone:</ion-text><span color="danger">   0{{list.phone}}</span><br>
+            <ion-icon name="time" color="dark" ></ion-icon><ion-text color="dark">Time Available:</ion-text><span color="danger"></span><br>
+            <ion-item>
+              <ion-text></ion-text>
+            </ion-item>
             <ion-button size="small" slot="center" (click)="openModal()"  color="dark" padding-left="20px">Book</ion-button>
             <ion-fab vertical="center" horizontal="end" slot="fixed">
-                <ion-fab-button size="small" color="primary" >
+                <ion-fab-button size="small" color="primary" (click)="dialNumber()">
                   <ion-icon name="call"></ion-icon>
                 </ion-fab-button>
               </ion-fab>
@@ -23,6 +27,4 @@
       <ion-card *ngIf="(lists|async).length == 0">
         <ion-text><h4>CANNOT FIND ANY DOCTOR AT THE MOMENT</h4></ion-text>
       </ion-card>
-
-     
 </ion-content>

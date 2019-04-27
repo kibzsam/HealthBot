@@ -18,9 +18,8 @@ export class SchedulePage implements OnInit {
     private modalController:ModalController,
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    ) {
-      
-    }
+    //private callNumber: CallNumber
+    ) {}
   
   async openModal(){
     const modal = await this.modalController.create({
@@ -28,6 +27,12 @@ export class SchedulePage implements OnInit {
     });
     modal.present();
   }
+ //Function to dial a number
+  /*dialNumber(){
+    this.callNumber.callNumber("18001010101", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }*/
 
   // retrieving all Doctors inform of a list
   

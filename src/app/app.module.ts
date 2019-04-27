@@ -1,3 +1,4 @@
+import { DoctorprofilePageModule } from './doctorprofile/doctorprofile.module';
 import { BookPageModule } from './book/book.module';
 import { UserService } from './user.service';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    NgCalendarModule,
+    NgCalendarModule, 
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
@@ -33,7 +34,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     BookPageModule,
-    DoctorPageModule
+    DoctorPageModule,
+    DoctorprofilePageModule
   ],
   providers: [
     StatusBar,
