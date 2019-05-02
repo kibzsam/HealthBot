@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import { NgCalendarModule  } from 'ionic2-calendar';
 import { BookPage } from './book.page';
 
 const routes: Routes = [
@@ -15,7 +15,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+   
   imports: [
+    NgCalendarModule,
     CommonModule,
     FormsModule,
     IonicModule,

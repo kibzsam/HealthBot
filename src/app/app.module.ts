@@ -19,6 +19,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { DoctorPageModule } from './doctor/doctor.module';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     AngularFireDatabaseModule,
     BookPageModule,
     DoctorPageModule,
-    DoctorprofilePageModule
+    DoctorprofilePageModule,
   ],
   providers: [
     StatusBar,
@@ -43,6 +45,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UserService,
+    CallNumber
   ],
   bootstrap: [AppComponent]
 })

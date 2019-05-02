@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { auth } from 'firebase/app';
 import{AlertController} from '@ionic/angular'
 import {Router} from '@angular/router'
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +21,9 @@ export class RegisterPage implements OnInit {
   password: string = ""
   cpassword: string = ""
   username: string=""
-  phone: string=""
+  phone: string =""
   role: string= ""
+  myForm:FormGroup
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -29,8 +31,16 @@ export class RegisterPage implements OnInit {
     public afstore:AngularFirestore,
     public db:AngularFireDatabase,
     public route:Router,
-    public user:UserService
-    ) { }
+    public user:UserService,
+    ) { 
+      /*this.myForm =new FormGroup({
+        username: new FormControl('',[Validators.required,Validators.maxLength(5)]),
+        phone: new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+        role: new FormControl('',[Validators.required]),
+        email: new FormControl('',Validators.pattern(".+\@.+\..+")),
+        
+      })*/
+    }
 
   ngOnInit() {
   }
@@ -41,9 +51,15 @@ export class RegisterPage implements OnInit {
       this.showAlert("Error!", "Passwords don't match try again!!")
       return console.error("Password don't match")
     }
+
     try{
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(email,password)
       var user = this.afAuth.auth.currentUser.uid;
+      if(phone.length < 10 && phone.length > 10){
+        this.showAlert("Error!", "Your Phone Number should be of 10 digits")
+        console.log(length)
+        return console.error("Phone number is not correct")
+      }
       this.db.database.ref('users/' + user).set({
         username: username,
         phone: phone,

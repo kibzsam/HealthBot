@@ -11,7 +11,7 @@
                 <ion-title>Dr: {{list.username}}</ion-title>
               </ion-item>
             <ion-card-content >
-            <ion-icon name="phone-portrait" color="dark" ></ion-icon><ion-text color="dark">Phone:</ion-text><span color="danger">   0{{list.phone}}</span><br>
+            <ion-icon name="phone-portrait" color="dark" ></ion-icon><ion-text color="dark">Phone:</ion-text ><ion-input disabled="true" [(ngModel)]="phone">   0{{list.phone}}</ion-input><br>
             <ion-icon name="time" color="dark" ></ion-icon><ion-text color="dark">Time Available:</ion-text><span color="danger"></span><br>
             <ion-item>
               <ion-text></ion-text>

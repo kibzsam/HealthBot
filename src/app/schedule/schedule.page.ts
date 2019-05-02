@@ -3,6 +3,7 @@ import { NavController, ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase,AngularFireList } from "@angular/fire/database";
+import { CallNumber } from '@ionic-native/call-number/ngx';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 @Component({
@@ -13,12 +14,13 @@ import { filter } from 'rxjs/operators';
 export class SchedulePage implements OnInit {
   listsRef: AngularFireList<any>;
   public lists: Observable<any[]>;
+  public phone:number
 
   constructor(private nav: NavController,
     private modalController:ModalController,
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    //private callNumber: CallNumber
+    private callNumber: CallNumber
     ) {}
   
   async openModal(){
@@ -28,11 +30,14 @@ export class SchedulePage implements OnInit {
     modal.present();
   }
  //Function to dial a number
-  /*dialNumber(){
-    this.callNumber.callNumber("18001010101", true)
+  async dialNumber(lists):Promise<any>{
+    const number = lists.map(item=>{
+      return item.phone;
+    })
+    await this.callNumber.callNumber(String(number), true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
-  }*/
+  }
 
   // retrieving all Doctors inform of a list
   

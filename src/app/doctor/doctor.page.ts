@@ -1,11 +1,14 @@
+import { take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { AngularFireDatabase } from "@angular/fire/database";
+import { AngularFireDatabase,AngularFireObject} from "@angular/fire/database";
 import {Router} from '@angular/router'
-import { NavController, ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { NavController, ModalController,ToastController } from '@ionic/angular';
+import{Profile} from '../../models/docprofile'
+import { Observable} from 'rxjs';
 import { DoctorprofilePage } from '../doctorprofile/doctorprofile.page';
+
 
 @Component({
   selector: 'app-doctor',
@@ -13,36 +16,53 @@ import { DoctorprofilePage } from '../doctorprofile/doctorprofile.page';
   styleUrls: ['./doctor.page.scss'],
 })
 export class DoctorPage implements OnInit {
-  public details: Observable<any[]>;
+  profile= {} as Profile;
+  profileData:Observable<any>
+  message:string;
   constructor(
     public afAuth:AngularFireAuth,
     private modalController:ModalController,
+    private toastCtrl:ToastController,
     public route:Router,
     public nav:NavController,
     public afstore: AngularFirestore,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+  
     ) { }
-// Getting Doctors details
 
+// Function for show Toast
+async showToast(message){
+  const toast = await this.toastCtrl.create({
+    message:message,
+    duration:3000,
+    position:'top'
+  });
+  await toast.present();
+}
+  // function to add type,location details of a doctor
+  createProfile(){
 
-
+  }
 // function to Navigate to doctors profile page where calendar belongs
   docProfile(){
     this.route.navigate(['/doctorprofile']);
 
   }
-  
   ngOnInit() {
-    var userId = this.afAuth.auth.currentUser.uid;
-    return this.db.database
-        .ref("/users/" + userId)
-        .once("value")
-        .then((snapshot)=>{
-          this.details = snapshot.val()&& snapshot.val().username;
-        })
-        .catch(function(error) {
-          console.log("Error getting document:", error);
-        });
+    // Getting Doctors details
+    this.afAuth.authState.pipe(take(1)).subscribe(data=>{
+      if(data && data.email && data.uid){
+         this.showToast("Welcome to HealthBot"+'  '+data.email);
+         this.profileData = this.db.object("/users/"+data.uid).valueChanges();
+         
+         console.log(this.profileData);
+      }
+      else{
+        this.showToast("Could not find this user");
+        console.log("cannot find data")
+      }
+    })
+    
   }
   logout() {
     this.afAuth.auth.signOut();
