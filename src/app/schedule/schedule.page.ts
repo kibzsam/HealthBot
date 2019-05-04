@@ -1,5 +1,5 @@
 import { BookPage } from './../book/book.page';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController,LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase,AngularFireList } from "@angular/fire/database";
@@ -13,40 +13,53 @@ import { filter } from 'rxjs/operators';
 })
 export class SchedulePage implements OnInit {
   listsRef: AngularFireList<any>;
-  public lists: Observable<any[]>;
-  public phone:number
+  public lists: Observable<any>;
+  list:any;
 
   constructor(private nav: NavController,
     private modalController:ModalController,
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    private callNumber: CallNumber
+    private callNumber: CallNumber,
+    //private loadingCtrl:LoadingController
     ) {}
-  
-  async openModal(){
+
+    ngOnInit() {
+      // retrieving all Doctors inform of a list
+      this.listsRef = this.db.list('users',ref=>ref.orderByChild('role').equalTo('Doctor'));
+      this.lists=this.listsRef.valueChanges();
+      this.lists.subscribe(res=>console.log(res));
+    }
+    
+    //Function to call an Ambulance
+    async dialNumber():Promise<any>{
+        await this.callNumber.callNumber("999", true)
+        .then(res => console.log('Launched dialer!', res))
+        .catch(err => console.log('Error launching dialer', err));
+      }
+      //function to call doctor
+      async callDoctor(list):Promise<any>{
+        await this.callNumber.callNumber(String(list.phone), true)
+        .then(res => console.log('Launched dialer!', res))
+        .catch(err => console.log('Error launching dialer', err));
+        console.log(list.phone);
+      }
+
+  async openModal(list){
     const modal = await this.modalController.create({
-      component : BookPage
+      component : BookPage,
+      componentProps:{
+        name:list.username
+      }
     });
     modal.present();
+    console.log(list)
   }
- //Function to dial a number
-  async dialNumber(lists):Promise<any>{
-    const number = lists.map(item=>{
-      return item.phone;
-    })
-    await this.callNumber.callNumber(String(number), true)
-    .then(res => console.log('Launched dialer!', res))
-    .catch(err => console.log('Error launching dialer', err));
-  }
+ 
 
-  // retrieving all Doctors inform of a list
   
-  ngOnInit() {
-    this.listsRef = this.db.list('users',ref=>ref.orderByChild('role').equalTo('Doctor'));
-    this.lists=this.listsRef.valueChanges();
-    this.lists.subscribe(res=>console.log(res));
   
-  }
+  
 
   
 

@@ -18,8 +18,19 @@
       
         <ion-card-content>
             <ion-item >
-              <ion-icon name="call" color="dark" ></ion-icon><ion-card-subtitle >   0{{(profileData |async)?.phone}}</ion-card-subtitle><br>
-                
+                <ion-icon name="contact" color="dark" ></ion-icon><ion-card-subtitle >Full Name: {{(profileData |async)?.fullname}}</ion-card-subtitle>
+            </ion-item>
+            <ion-item >
+                <ion-icon name="call" color="dark" ></ion-icon><ion-card-subtitle >Phone: 0{{(profileData |async)?.phone}}</ion-card-subtitle>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="keypad" color="dark" ></ion-icon><ion-card-subtitle >Doctor Type: {{(profileData |async)?.type}}</ion-card-subtitle>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="pin" color="dark" ></ion-icon><ion-card-subtitle >Location: {{(profileData |async)?.location}}</ion-card-subtitle>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="medkit" color="dark" ></ion-icon><ion-card-subtitle >Hospital: {{(profileData |async)?.hospital}}</ion-card-subtitle>
             </ion-item>
         </ion-card-content>
     </ion-card>
@@ -30,15 +41,19 @@
         <ion-card-content padding text-center>
             <ion-item>
                 <ion-label position="floating" color="primary">Full Name</ion-label>
-                <ion-input></ion-input>
+                <ion-input [(ngModel)]="profile.fullname" value="{{(profileData |async)?.fullname}}"></ion-input>
               </ion-item>
             <ion-item>
                 <ion-label position="floating" color="primary">Type of Doctor</ion-label>
-                <ion-input></ion-input>
+                <ion-input [(ngModel)]="profile.type" value="{{(profileData |async)?.type}}"></ion-input>
             </ion-item>
               <ion-item>
                 <ion-label position="floating" color="primary">Hospital</ion-label>
-                <ion-input></ion-input>
+                <ion-input [(ngModel)]="profile.hospital" value="{{(profileData |async)?.hospital}}"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating" color="primary">Location</ion-label>
+                <ion-input [(ngModel)]="profile.location" value="{{(profileData |async)?.location}}"></ion-input>
               </ion-item>
               <ion-button fill="outline" slot="end" color="danger" (click)="createProfile()">Add Profile</ion-button>
         </ion-card-content>

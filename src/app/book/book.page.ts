@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book',
@@ -82,8 +83,10 @@ export class BookPage implements OnInit {
     
    }*/
     this.eventSource.push(eventCopy);
-    var userId = this.afAuth.auth.currentUser.uid;
-    this.db.database.ref('/users').child(userId).push(this.eventSource)
+    this.afAuth.authState.pipe(take(1)).subscribe(data=>{
+      this.db.database.ref("bookings")
+    })
+    
     this.myCal.loadEvents();
     this.resetEvent();
   }

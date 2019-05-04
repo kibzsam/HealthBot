@@ -4,7 +4,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { auth } from "firebase/app";
-import { AlertController } from "@ionic/angular";
+import { AlertController,ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
 @Component({
   selector: "app-login",
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
     public router: Router,
     public user: UserService,
     public afstore: AngularFirestore,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public toastCtrl:ToastController
   ) {}
 
   ngOnInit() {}
@@ -50,7 +51,7 @@ export class LoginPage implements OnInit {
             this.router.navigate(["/doctor"]);
             console.log("The Role:", userRole);
           } else {
-            this.showAlert("Success!", "Welcome" + " ");
+            this.showToast("Welcome");
             this.router.navigate(["/tabs"]);
           }
         })
@@ -100,5 +101,13 @@ export class LoginPage implements OnInit {
       buttons: ["OK"]
     });
     await alert.present();
+  }
+  async showToast(message){
+    const toast = await this.toastCtrl.create({
+      message:message,
+      duration:5000,
+      position:'top'
+    });
+    await toast.present();
   }
 }

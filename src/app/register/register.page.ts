@@ -55,11 +55,11 @@ export class RegisterPage implements OnInit {
     try{
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(email,password)
       var user = this.afAuth.auth.currentUser.uid;
-      if(phone.length < 10 && phone.length > 10){
+      /*if(phone.length < 10 && phone.length > 10){
         this.showAlert("Error!", "Your Phone Number should be of 10 digits")
         console.log(length)
         return console.error("Phone number is not correct")
-      }
+      }*/
       this.db.database.ref('users/' + user).set({
         username: username,
         phone: phone,

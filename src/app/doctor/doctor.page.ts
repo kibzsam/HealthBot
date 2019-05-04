@@ -34,13 +34,17 @@ export class DoctorPage implements OnInit {
 async showToast(message){
   const toast = await this.toastCtrl.create({
     message:message,
-    duration:3000,
+    duration:5000,
     position:'top'
   });
   await toast.present();
 }
   // function to add type,location details of a doctor
   createProfile(){
+    this.afAuth.authState.pipe(take(1)).subscribe(auth=>{
+      this.db.database.ref("/users/"+auth.uid).update(this.profile);
+      this.showToast("Profile successfully added");
+    })
 
   }
 // function to Navigate to doctors profile page where calendar belongs

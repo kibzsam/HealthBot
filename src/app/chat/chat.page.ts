@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
+import { LoadingController} from '@ionic/angular';
 
 @Component({
   selector: "app-chat",
@@ -7,14 +8,26 @@ import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
   styleUrls: ["./chat.page.scss"]
 })
 export class ChatPage implements OnInit {
-  constructor(private iab: InAppBrowser) {}
+  constructor(
+    private iab: InAppBrowser,
+    private loadingCtrl:LoadingController
+    ) {
+      //this.dismissLoading();
+    }
 
   ngOnInit() {
-    /** const browser = this.iab.create("https://helthbot.herokuapp.com/",'_self');
-    browser.show();
-    browser.on("loadstop").subscribe(event => {
-      browser.insertCSS({ code: "body{color: red;" });
-    });
-    browser.close();*/
+    //this.presentLoadingDefault();
+    
   }
+  async presentLoadingDefault() {
+     var load = await this.loadingCtrl.create({
+      message:'Please wait...'
+    });
+    await load.present();
+  }
+  dismissLoading(){
+    this.loadingCtrl.dismiss();
+}
+
+
 }
