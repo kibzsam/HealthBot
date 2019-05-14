@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
             this.router.navigate(["/doctor"]);
             console.log("The Role:", userRole);
           } else {
-            this.showToast("Welcome");
+            this.showToast("Hey, Welcome to Health Bot, Health Bot is our intelligent healthcare assistant that listens to your symptoms and gives you the most reliable medical recommendation, chat with the bot");
             this.router.navigate(["/tabs"]);
           }
         })
@@ -105,8 +105,13 @@ export class LoginPage implements OnInit {
   async showToast(message){
     const toast = await this.toastCtrl.create({
       message:message,
-      duration:5000,
-      position:'top'
+      duration:100000,
+      position:'middle',
+      showCloseButton: true,
+      closeButtonText: 'Got It',
+      color:'secondary',
+      translucent:true,
+      animated:true
     });
     await toast.present();
   }

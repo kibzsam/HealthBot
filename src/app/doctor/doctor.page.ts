@@ -7,7 +7,7 @@ import {Router} from '@angular/router'
 import { NavController, ModalController,ToastController } from '@ionic/angular';
 import{Profile} from '../../models/docprofile'
 import { Observable} from 'rxjs';
-import { DoctorprofilePage } from '../doctorprofile/doctorprofile.page';
+
 
 
 @Component({

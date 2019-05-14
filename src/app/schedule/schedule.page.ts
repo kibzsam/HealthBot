@@ -5,7 +5,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase,AngularFireList } from "@angular/fire/database";
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.page.html',
@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SchedulePage implements OnInit {
   listsRef: AngularFireList<any>;
-  public lists: Observable<any>;
+  lists: Observable<any>;
   list:any;
 
   constructor(private nav: NavController,
@@ -25,10 +25,11 @@ export class SchedulePage implements OnInit {
     ) {}
 
     ngOnInit() {
-      // retrieving all Doctors inform of a list
-      this.listsRef = this.db.list('users',ref=>ref.orderByChild('role').equalTo('Doctor'));
-      this.lists=this.listsRef.valueChanges();
-      this.lists.subscribe(res=>console.log(res));
+      // retrieving all Doctors in form of a list
+      this.lists = this.db.list('users',ref=>ref.orderByChild('role').equalTo('Doctor'))
+       .snapshotChanges()
+       .pipe(map((lists:any[])=>lists.map(list=>({id:list.key,...list.payload.val()}))));
+       
     }
     
     //Function to call an Ambulance
@@ -44,16 +45,16 @@ export class SchedulePage implements OnInit {
         .catch(err => console.log('Error launching dialer', err));
         console.log(list.phone);
       }
-
+// opens modal for creating a schedule and pass the ID of doctor in the modal
   async openModal(list){
     const modal = await this.modalController.create({
       component : BookPage,
       componentProps:{
-        name:list.username
+        id:list.id
       }
     });
     modal.present();
-    console.log(list)
+    console.log(list.id)
   }
  
 

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { auth } from 'firebase/app';
 import{AlertController} from '@ionic/angular'
 import {Router} from '@angular/router'
-import { FormGroup, FormControl,Validators } from '@angular/forms';
+import {ReactiveFormsModule,FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -23,8 +23,8 @@ export class RegisterPage implements OnInit {
   username: string=""
   phone: string =""
   role: string= ""
-  myForm:FormGroup
-
+  public registerForm:FormGroup
+  
   constructor(
     public afAuth: AngularFireAuth,
     public alert:AlertController,
@@ -32,12 +32,20 @@ export class RegisterPage implements OnInit {
     public db:AngularFireDatabase,
     public route:Router,
     public user:UserService,
+    public formBuilder:FormBuilder
     ) { 
-      /*this.myForm =new FormGroup({
-        username: new FormControl('',[Validators.required,Validators.maxLength(5)]),
-        phone: new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+
+      this.registerForm =new FormGroup({
+        username: new FormControl('',[Validators.max(7),Validators.required]),
+        phone:new FormControl('',[Validators.min(9),Validators.max(10),Validators.required]),
         role: new FormControl('',[Validators.required]),
-        email: new FormControl('',Validators.pattern(".+\@.+\..+")),
+
+    })
+        /*this.registerForm =formBuilder.group({
+        username: ['',Validators.compose([Validators.required,Validators.maxLength(7)])],
+        phone: ['',Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
+        role: ['',Validators.compose([Validators.required])],
+        email: ['',Validators.compose([Validators.pattern(".+\@.+\..+")])],
         
       })*/
     }

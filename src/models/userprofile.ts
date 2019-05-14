@@ -1,8 +1,7 @@
 export interface Profile{
     fullname:string;
-    phone:string;
     type:string;
+    phone:string;
     location:string;
     hospital:string;
 }
-

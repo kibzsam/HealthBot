@@ -12,7 +12,7 @@ export class ChatPage implements OnInit {
     private iab: InAppBrowser,
     private loadingCtrl:LoadingController
     ) {
-      //this.dismissLoading();
+      
     }
 
   ngOnInit() {

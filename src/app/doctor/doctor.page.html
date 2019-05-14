@@ -42,7 +42,14 @@
             <ion-item>
                 <ion-label position="floating" color="primary">Full Name</ion-label>
                 <ion-input [(ngModel)]="profile.fullname" value="{{(profileData |async)?.fullname}}"></ion-input>
-              </ion-item>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating" color="primary">Phone</ion-label>
+                <ion-input 
+                type="tel" minlength="0" maxlength="10" inputmode="numeric" 
+                pattern="^[0-9]*$" required placeholder="Enter Numbers Only"
+                [(ngModel)]="profile.phone" value="{{(profileData |async)?.phone}}"></ion-input>
+            </ion-item>
             <ion-item>
                 <ion-label position="floating" color="primary">Type of Doctor</ion-label>
                 <ion-input [(ngModel)]="profile.type" value="{{(profileData |async)?.type}}"></ion-input>

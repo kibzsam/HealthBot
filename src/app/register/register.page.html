@@ -3,7 +3,6 @@
     <ion-title color="light">Health Chatbot</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding text-center>
   <img src="../assets/icon/icon.png" width="80px"height="80px" >
 
@@ -11,32 +10,68 @@
     <h4 >Welcome to Health Bot</h4>
     <h6>Sign Up:</h6>
   </ion-text>
+ <!-- <form [formGroup]="registerForm" (submit)="Register()">
+      <ion-item>
+          <ion-label color="primary" position="floating">Username</ion-label>
+          <ion-input type="text" maxlength="13" formControlName="username" [(ngModel)]="username"required placeholder="Username Must Be At Most 13 characters"></ion-input>
+
+      </ion-item>
+        <ion-item>
+          <ion-label color="primary" position="floating">Phone</ion-label>
+          <ion-input type="tel" minlength="0" maxlength="10" inputmode="numeric" pattern="^[0-9]*$" formControlName="phone" [(ngModel)]="phone"
+          required placeholder="Enter Numbers Only"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" *ngIf="registerForm.hasError('required', 'phone')"></div>
+        <ion-item margin-bottom>
+          <ion-label color="primary" position="floating">Role</ion-label>
+          <ion-select value="" formControlName="role" [(ngModel)]="role">
+            <ion-select-option value="Patient">Patient</ion-select-option>
+            <ion-select-option value="Doctor">Doctor</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" *ngIf="registerForm.hasError('required', 'role')"></div>
+        <ion-item margin-bottom>
+          <ion-label color="primary" position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"[(ngModel)]="email" required></ion-input>
+        </ion-item>
+        <ion-item margin-bottom>
+          <ion-label color="primary" position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" *ngIf="registerForm.hasError('required', 'password')"></div>
+        <ion-item margin-bottom>
+          <ion-label color="primary" position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="cpassword" [(ngModel)]="cpassword"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" *ngIf="registerForm.hasError('required', 'cpassword')"></div></form>-->
+   
   <ion-item>
-    <ion-label color="danger" position="floating">Username</ion-label>
-    <ion-input type="text" [(ngModel)]="username" required></ion-input>
+    <ion-label color="primary" position="floating">Username</ion-label>
+    <ion-input type="text" maxlength="13" [(ngModel)]="username" required placeholder="Username Must Be At Most 13 characters"></ion-input>
   </ion-item>
   
   <ion-item>
-    <ion-label color="danger" position="floating">Phone</ion-label>
-    <ion-input type="number"  pattern="[0-9]*" [(ngModel)]="phone" required></ion-input>
+    <ion-label color="primary" position="floating">Phone</ion-label>
+    <ion-input type="tel" minlength="0" maxlength="10" inputmode="numeric" 
+    pattern="^[0-9]*$" [(ngModel)]="phone" required placeholder="Enter Numbers Only"></ion-input>
   </ion-item>
   <ion-item margin-bottom>
-    <ion-label color="danger" position="floating">Role</ion-label>
+    <ion-label color="primary" position="floating">Role</ion-label>
     <ion-select value="" [(ngModel)]="role">
       <ion-select-option value="Patient">Patient</ion-select-option>
       <ion-select-option value="Doctor">Doctor</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item margin-bottom>
-    <ion-label color="danger" position="floating">Email</ion-label>
+    <ion-label color="primary" position="floating">Email</ion-label>
     <ion-input type="email" [(ngModel)]="email" required></ion-input>
   </ion-item>
   <ion-item margin-bottom>
-    <ion-label color="danger" position="floating">Password</ion-label>
+    <ion-label color="primary" position="floating">Password</ion-label>
     <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
   <ion-item margin-bottom>
-    <ion-label color="danger" position="floating">Confirm Password</ion-label>
+    <ion-label color="primary" position="floating">Confirm Password</ion-label>
     <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
   </ion-item>
   <ion-button
@@ -47,6 +82,7 @@
     (click)="Register()"
     >Sign Up</ion-button
   >
+
   <ion-item [routerLink]="'/login/'" routerDirection="forward">
     <ion-label color="medium" font-size-small margin-bottom>
       Sign in here...

@@ -20,6 +20,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { DoctorPageModule } from './doctor/doctor.module';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import {ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -38,6 +39,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     BookPageModule,
     DoctorPageModule,
     DoctorprofilePageModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
